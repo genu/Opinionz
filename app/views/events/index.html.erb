@@ -1,0 +1,8 @@
+<div id="events"></div>
+
+<script type="text/javascript">
+  $(function() {
+    window.router = new SampleApp.Routers.EventsRouter({events: <%= @events.to_json.html_safe %>});
+    Backbone.history.start();
+  });
+</script>
