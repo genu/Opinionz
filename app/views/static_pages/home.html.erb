@@ -63,19 +63,3 @@
 		<%= link_to "Create an event", signup_path, class: "btn btn-large btn-primary" %>
 	</div>
 </div>
-<%
-
-EM.run {
-  deferrable = Pusher['test_channel'].trigger_async('my_event', 'hi')
-
-  deferrable.callback { # called on success
-    puts "Message sent successfully."
-    EM.stop
-  }
-  deferrable.errback { |error| # called on error
-    puts "Message could not be sent."
-    puts error
-    EM.stop
-  }
-}
-%>
