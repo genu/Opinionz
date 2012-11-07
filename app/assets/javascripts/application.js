@@ -13,9 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require highcharts.js
-//= require underscore
-//= require backbone
-//= require backbone_rails_sync
-//= require backbone_datalink
-//= require backbone/sample_app
 //= require_tree .

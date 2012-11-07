@@ -2,10 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 gem 'bootstrap-sass', '2.0.4'
-gem 'bcrypt-ruby', '3.0.1'
-gem 'rails-backbone'
 gem 'haml'
 gem 'haml-rails'
+gem 'pusher'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,9 +24,16 @@ end
 
 gem 'jquery-rails'
 
-group :test do
+group :development, :test do
 	gem 'capybara', '1.1.2'
 	gem 'factory_girl_rails', '4.1.0'
+	gem 'rb-fsevent'
+	gem 'guard-rspec'
+	gem 'guard-spork'
+	gem 'guard-livereload'
+	gem 'fuubar'
+	gem 'ruby_gntp'
+	gem 'growl'
 end
 
 group :production do
@@ -35,7 +41,7 @@ group :production do
 end
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

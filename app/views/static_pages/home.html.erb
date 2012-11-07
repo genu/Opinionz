@@ -1,9 +1,81 @@
 <% provide(:title, "Home") %>
+<script type="text/javascript" charset="utf-8">
+	$(function() {
+		new Highcharts.Chart({
+			chart: {
+				renderTo: 'chart_demo',
+				type: "spline",
+				events: {
+					load: function() {
+						var series = this.series[0];
+						setInterval(function() {
+							var x = (new Date()).getTime();
+							var y = Math.floor(Math.random()*75+1);
+							var y2 = Math.floor(Math.random()*50+1);
+							series.addPoint([x, y], true, true);
+							series.addPoint([x, y2], true, true);
+						}, 1000)
+					}
+				}
+			},
+			credits: {
+				enabled: false
+			},
+			title: {
+				text: "Title"
+			},
+			tooltip: {
+				enabled: false
+			},
+			plotOptions: {
+				spline: {
+					marker: {
+						enabled: false
+					},
+					allowPointSelect: false,
+					enableMouseTracking: false
+				}
+			},
+			xAxis: {
+				type: 'datetime'
+			},
+			yAxis: {
+				title: {
+					text: 'Approval'
+				},
+				min: -100,
+				max: 100
+			},
+			legend: {
+				enabled: false
+			},
+			series: [{
+				data: [1,2,5,7]
+			}]
+		})
+	});
+</script>
 <div class="hero-unit">
 	<h3>Crowed sourced approval system</h3>
 	<br/>
 	<div class="center">
-		<div id="placeholder" style="width:850px; height: 400px;"></div>
+		<div id="chart_demo" style="width:850px; height: 400px;"></div>
 		<%= link_to "Create an event", signup_path, class: "btn btn-large btn-primary" %>
 	</div>
 </div>
+<%
+
+EM.run {
+  deferrable = Pusher['test_channel'].trigger_async('my_event', 'hi')
+
+  deferrable.callback { # called on success
+    puts "Message sent successfully."
+    EM.stop
+  }
+  deferrable.errback { |error| # called on error
+    puts "Message could not be sent."
+    puts error
+    EM.stop
+  }
+}
+%>
